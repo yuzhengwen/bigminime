@@ -79,6 +79,11 @@ public class Player : MorphableBehaviour, IDamageable
         {
             TakeDamage(1);
         }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            NotificationHandler.Instance.ShowNotification("Hello World!");
+        }
     }
 }
 
