@@ -5,7 +5,8 @@ using PrimeTween;
 public class Player : MorphableBehaviour, IDamageable
 {
     public PlayerStats stats = new();
-    private Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
     private MorphGun morphGun;
     private DamageFlash damageFlash;
 
