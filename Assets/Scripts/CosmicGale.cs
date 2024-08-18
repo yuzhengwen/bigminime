@@ -39,7 +39,14 @@ public class CosmicGale : MonoBehaviour
     {
         if (playerInGaleZone)
         {
-            player.rb.AddForce(Vector2.up * 100);
+            if (player.state == MorphState.Normal)
+            {
+                player.rb.AddForce(Vector2.up * 70);
+            }
+            else if (player.state == MorphState.Small)
+            {
+                player.rb.AddForce(Vector2.up * 150);
+            }
         }
     }
 }
