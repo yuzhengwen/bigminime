@@ -5,16 +5,21 @@ using PrimeTween;
 public class Player : MorphableBehaviour, IDamageable
 {
     public PlayerStats stats = new();
-    [HideInInspector]
-    public Rigidbody2D rb;
+    [HideInInspector] public Rigidbody2D rb;
     private MorphGun morphGun;
     private DamageFlash damageFlash;
+    [SerializeField] private HealthbarController healthbarController;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         morphGun = GetComponentInChildren<MorphGun>();
         damageFlash = GetComponent<DamageFlash>();
+    }
+
+    private void Start()
+    {
+        healthbarController.SetMaxHealth(stats.maxHealth);
     }
 
     public override void Grow()
@@ -48,6 +53,7 @@ public class Player : MorphableBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         stats.currentHealth -= damage;
+        healthbarController.SetHealth(stats.currentHealth);
         damageFlash.Flash();
 
         if (stats.currentHealth <= 0)
