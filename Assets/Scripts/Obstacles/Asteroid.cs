@@ -5,7 +5,7 @@ public class Asteroid : MorphableObstacle, IDamageable
 {
     public int health = 15;
     private SpriteRenderer spriteRenderer;
-
+    [SerializeField] private GameObject hitFx;
     protected override void Awake()
     {
         base.Awake();
@@ -18,6 +18,8 @@ public class Asteroid : MorphableObstacle, IDamageable
         if (health <= 0)
         {
             Destroy(gameObject);
+            GameObject hit = Instantiate(hitFx, transform.position, Quaternion.identity);
+            Destroy(hit, 0.05f);
         }
     }
 

@@ -8,6 +8,7 @@ public class Player : MorphableBehaviour, IDamageable
     public PlayerStats stats = new();
     [HideInInspector] public Rigidbody2D rb;
     private MorphGun morphGun;
+    private PlayerGun playerGun;
     private DamageFlash damageFlash;
     [SerializeField] private HealthbarController healthbarController;
 
@@ -17,6 +18,7 @@ public class Player : MorphableBehaviour, IDamageable
     {
         rb = GetComponent<Rigidbody2D>();
         morphGun = GetComponentInChildren<MorphGun>();
+        playerGun = GetComponentInChildren<PlayerGun>();
         damageFlash = GetComponent<DamageFlash>();
     }
 
@@ -24,18 +26,29 @@ public class Player : MorphableBehaviour, IDamageable
     {
         healthbarController.SetMaxHealth(stats.maxHealth);
     }
-
+    public void EnablePlay()
+    {
+        playerGun.canShoot = true;
+        playing = true;
+        morphGun.canShoot = true;
+    }
+    public void DisablePlay()
+    {
+        playerGun.canShoot = false;
+        playing = false;
+        morphGun.canShoot = false;
+    }
     public override void Grow()
     {
         if (state == MorphState.Small)
         {
             state = MorphState.Normal;
-            Tween.Scale(transform, 1f, 1.5f, Ease.InOutQuad);
+            Tween.Scale(transform, 1f, .8f, Ease.InOutQuad);
         }
         else if (state == MorphState.Normal)
         {
             state = MorphState.Big;
-            Tween.Scale(transform, 4, 1.5f, Ease.InOutQuad);
+            Tween.Scale(transform, 4, .8f, Ease.InOutQuad);
         }
     }
 
@@ -44,12 +57,12 @@ public class Player : MorphableBehaviour, IDamageable
         if (state == MorphState.Big)
         {
             state = MorphState.Normal;
-            Tween.Scale(transform, 1, 1.5f, Ease.InOutQuad);
+            Tween.Scale(transform, 1, .8f, Ease.InOutQuad);
         }
         else if (state == MorphState.Normal)
         {
             state = MorphState.Small;
-            Tween.Scale(transform, 0.5f, 1.5f, Ease.InOutQuad);
+            Tween.Scale(transform, 0.5f, .8f, Ease.InOutQuad);
         }
     }
 

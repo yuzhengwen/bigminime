@@ -103,6 +103,7 @@ MonoBehaviour:
   damage: 1
   speed: 5
   health: 20
+  hitFx: {fileID: 3804872480095797596, guid: ebc480baf52b220419a0c92da96cc531, type: 3}
 --- !u!50 &-8861579700830401932
 Rigidbody2D:
   serializedVersion: 4

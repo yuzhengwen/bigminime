@@ -7,10 +7,10 @@ public class MorphGun : MonoBehaviour
     public float fireInterval = 1.5f;
     private float nextFireTime = 0;
     [SerializeField] private Transform firePoint;
-
+    public bool canShoot = true;
     public void Shoot(MorphType type)
     {
-        if (Time.time >= nextFireTime)
+        if (Time.time >= nextFireTime && canShoot)
         {
             Quaternion rotate = Quaternion.LookRotation(Vector3.forward, GetVectorToMouse(transform.position));
             Instantiate(type == MorphType.Shrink ? shrink : grow, firePoint.position, rotate);

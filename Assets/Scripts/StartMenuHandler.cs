@@ -17,7 +17,7 @@ public class StartMenuHandler : MonoBehaviourSingleton<StartMenuHandler>
     {
         startMenu.SetActive(false);
         Time.timeScale = 1;
-        player.playing = true;
+        player.EnablePlay();
     }
     public void QuitGame()
     {
@@ -27,7 +27,7 @@ public class StartMenuHandler : MonoBehaviourSingleton<StartMenuHandler>
     {
         startMenu.SetActive(true);
         Time.timeScale = 0;
-        player.playing = false;
+        player.DisablePlay();
     }
     public void Restart()
     {
