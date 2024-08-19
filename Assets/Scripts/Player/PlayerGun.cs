@@ -18,5 +18,6 @@ public class PlayerGun : MonoBehaviour
     void Shoot()
     {
         Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        AudioHandler.Instance.PlayAudio("BulletFire");
     }
 }

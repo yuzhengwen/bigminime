@@ -15,6 +15,7 @@ public class MorphGun : MonoBehaviour
             Quaternion rotate = Quaternion.LookRotation(Vector3.forward, GetVectorToMouse(transform.position));
             Instantiate(type == MorphType.Shrink ? shrink : grow, firePoint.position, rotate);
             nextFireTime = Time.time + fireInterval;
+            AudioHandler.Instance.PlayAudio("MorphGunFire");
         }
     }
     public static Vector2 GetVectorToMouse(Vector3 position)
