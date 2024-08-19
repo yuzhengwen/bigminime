@@ -65,8 +65,8 @@ public class Player : MorphableBehaviour, IDamageable
 
     void Update()
     {
-        float moveX = Input.GetAxis("Horizontal");
-        float moveY = Input.GetAxis("Vertical");
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveY = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(moveX * stats.speed, moveY * stats.speed);
 
         if (Input.GetKeyDown(KeyCode.Q)) Grow();

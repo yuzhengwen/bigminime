@@ -17,6 +17,6 @@ public class PlayerGun : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, transform.position, transform.rotation);
+        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
     }
 }
