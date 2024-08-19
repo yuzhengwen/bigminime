@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
+using UnityEngine.SceneManagement;
 
 public class Player : MorphableBehaviour, IDamageable
 {
@@ -10,6 +11,8 @@ public class Player : MorphableBehaviour, IDamageable
     private DamageFlash damageFlash;
     [SerializeField] private HealthbarController healthbarController;
 
+    public bool playing = false;
+    public bool dead = false;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -58,13 +61,15 @@ public class Player : MorphableBehaviour, IDamageable
 
         if (stats.currentHealth <= 0)
         {
-            Debug.Log("Player died");
-            Destroy(gameObject);
+            dead = true;
+            StartMenuHandler.Instance.Restart();
         }
     }
 
     void Update()
     {
+        if (!playing) return;
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(moveX * stats.speed, moveY * stats.speed);

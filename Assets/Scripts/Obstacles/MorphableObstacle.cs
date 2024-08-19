@@ -1,4 +1,5 @@
 ﻿using PrimeTween;
+using System;
 using UnityEngine;
 
 public class MorphableObstacle : MorphableBehaviour
@@ -6,16 +7,31 @@ public class MorphableObstacle : MorphableBehaviour
     public int damage = 1;
     private Rigidbody2D rb;
     public float speed = 5;
-    private void Awake()
+
+    public event Action OnShrink, OnGrow;
+    protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-    }
-    private void FixedUpdate()
-    {
         rb.velocity = Vector2.left * speed;
+    }
+    private void Start()
+    {
+        if (state == MorphState.Small)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (state == MorphState.Normal)
+        {
+            transform.localScale = Vector3.one * 5;
+        }
+        else if (state == MorphState.Big)
+        {
+            transform.localScale = Vector3.one * 10;
+        }
     }
     public override void Grow()
     {
+        OnGrow?.Invoke();
         if (state == MorphState.Small)
         {
             state = MorphState.Normal;
@@ -30,6 +46,7 @@ public class MorphableObstacle : MorphableBehaviour
 
     public override void Shrink()
     {
+        OnShrink?.Invoke();
         if (state == MorphState.Big)
         {
             state = MorphState.Normal;

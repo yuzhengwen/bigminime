@@ -102,6 +102,7 @@ MonoBehaviour:
   state: 0
   damage: 1
   speed: 5
+  health: 20
 --- !u!50 &-8861579700830401932
 Rigidbody2D:
   serializedVersion: 4

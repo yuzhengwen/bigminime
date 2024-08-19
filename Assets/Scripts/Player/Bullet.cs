@@ -6,6 +6,7 @@ public class Bullet : MonoBehaviour
     public float speed = 10;
     public float lifeTime = 5;
     private Rigidbody2D rb;
+    [SerializeField] private GameObject hitEffect;
 
     private void Awake()
     {
@@ -24,7 +25,14 @@ public class Bullet : MonoBehaviour
         if (collision.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(damage);
+            HitEffect();
             Destroy(gameObject);
         }
     }
+    private void HitEffect()
+    {
+        GameObject fx = Instantiate(hitEffect, transform.position, Quaternion.identity);
+        Destroy(fx, 0.5f);
+    }
+
 }
