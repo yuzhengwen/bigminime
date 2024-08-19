@@ -21,5 +21,6 @@ public class Obstacle : MonoBehaviour
             player.TakeDamage(damage);
             Destroy(gameObject);
         }
+        Debug.Log($"{gameObject.name} collided with {collision.gameObject.name}");
     }
 }

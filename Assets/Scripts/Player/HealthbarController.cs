@@ -12,7 +12,7 @@ public class HealthbarController : MonoBehaviour
     [SerializeField] private Sprite emptyHeart;
     [SerializeField] private Sprite halfHeart;
 
-    public void SetMaxHealth(int maxHealth)
+    public void SetMaxHealth(int maxHealth, int currentHealth)
     {
         if (maxHealth % 2 != 0)
         {
@@ -20,7 +20,7 @@ public class HealthbarController : MonoBehaviour
             return;
         }
         this.maxHealth = maxHealth;
-        currentHealth = maxHealth;
+        this.currentHealth = currentHealth;
         for (int i = 0; i < maxHealth/2; i++)
         {
             GameObject heart = new GameObject("Heart_" + i);
@@ -32,6 +32,7 @@ public class HealthbarController : MonoBehaviour
 
             hearts.Add(heart);
         }
+        SetHealth(currentHealth);
     }
 
     public void SetHealth(int health)

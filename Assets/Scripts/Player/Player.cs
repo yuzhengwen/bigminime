@@ -24,7 +24,7 @@ public class Player : MorphableBehaviour, IDamageable
 
     private void Start()
     {
-        healthbarController.SetMaxHealth(stats.maxHealth);
+        healthbarController.SetMaxHealth(stats.maxHealth, stats.maxHealth);
     }
     public void EnablePlay()
     {
@@ -68,7 +68,7 @@ public class Player : MorphableBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        stats.currentHealth -= damage;
+        stats.currentHealth -= damage * MorphValues.SelfDamage[state];
         healthbarController.SetHealth(stats.currentHealth);
         damageFlash.Flash();
 

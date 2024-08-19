@@ -35,4 +35,10 @@ public static class MorphValues
         { MorphState.Normal, 5 },
         { MorphState.Big, 10 }
     };
+    public static Dictionary<MorphState, int> SelfDamage = new()
+    {
+        { MorphState.Small, 3 },
+        { MorphState.Normal, 2 },
+        { MorphState.Big, 1 }
+    };
 }

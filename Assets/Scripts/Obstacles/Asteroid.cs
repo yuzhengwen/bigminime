@@ -11,6 +11,10 @@ public class Asteroid : MorphableObstacle, IDamageable
         base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
+    private void Start()
+    {
+        UpdateHealth();
+    }
     public void TakeDamage(int damage)
     {
         health -= damage;
@@ -19,6 +23,7 @@ public class Asteroid : MorphableObstacle, IDamageable
         {
             Destroy(gameObject);
             GameObject hit = Instantiate(hitFx, transform.position, Quaternion.identity);
+            AudioHandler.Instance.PlayAudio("AsteroidExplosion");
             Destroy(hit, 0.05f);
         }
     }
@@ -62,16 +67,16 @@ public class Asteroid : MorphableObstacle, IDamageable
         }
         else if (state == MorphState.Normal)
         {
-            if (health < 15)
+            if (health != 20)
             {
-                health = 15;
+                health = 20;
             }
         }
         else if (state == MorphState.Big)
         {
-            if (health < 25)
+            if (health < 40)
             {
-                health = 25;
+                health = 40;
             }
         }
     }
