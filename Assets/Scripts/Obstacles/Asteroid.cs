@@ -5,19 +5,22 @@ public class Asteroid : MorphableObstacle, IDamageable
 {
     public int health = 15;
     private SpriteRenderer spriteRenderer;
+    private DamageFlash damageFlash;
     [SerializeField] private GameObject hitFx;
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        damageFlash = GetComponent<DamageFlash>();
     }
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         UpdateHealth();
     }
     public void TakeDamage(int damage)
     {
         health -= damage;
+        damageFlash.Flash();
         UpdateIndicator();
         if (health <= 0)
         {
@@ -79,5 +82,6 @@ public class Asteroid : MorphableObstacle, IDamageable
                 health = 40;
             }
         }
+        Debug.Log("Health: " + health);
     }
 }

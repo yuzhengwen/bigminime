@@ -8,12 +8,13 @@ public class Player : MorphableBehaviour, IDamageable
     public PlayerStats stats = new();
     [HideInInspector] public Rigidbody2D rb;
     private MorphGun morphGun;
-    private PlayerGun playerGun;
-    private DamageFlash damageFlash;
+    [SerializeField] private PlayerGun playerGun;
+    [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private HealthbarController healthbarController;
 
     public bool playing = false;
     public bool dead = false;
+    private bool canMorhph = true;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -40,30 +41,27 @@ public class Player : MorphableBehaviour, IDamageable
     }
     public override void Grow()
     {
-        if (state == MorphState.Small)
-        {
-            state = MorphState.Normal;
-            Tween.Scale(transform, 1f, .8f, Ease.InOutQuad);
-        }
-        else if (state == MorphState.Normal)
-        {
-            state = MorphState.Big;
-            Tween.Scale(transform, 4, .8f, Ease.InOutQuad);
-        }
+        if (!canMorhph) return;
+
+        canMorhph = false;
+        state = MorphState.Big;
+        Tween.Scale(transform, 4, .8f, Ease.InOutQuad).OnComplete(() => canMorhph = true);
+        Invoke(nameof(ReturnNormal), 2);
     }
 
     public override void Shrink()
     {
-        if (state == MorphState.Big)
-        {
-            state = MorphState.Normal;
-            Tween.Scale(transform, 1, .8f, Ease.InOutQuad);
-        }
-        else if (state == MorphState.Normal)
-        {
-            state = MorphState.Small;
-            Tween.Scale(transform, 0.5f, .8f, Ease.InOutQuad);
-        }
+        if (!canMorhph) return;
+
+        canMorhph = false;
+        state = MorphState.Small;
+        Tween.Scale(transform, 0.5f, .8f, Ease.InOutQuad).OnComplete(() => canMorhph = true);
+        Invoke(nameof(ReturnNormal), 2);
+    }
+    private void ReturnNormal()
+    {
+        state = MorphState.Normal;
+        Tween.Scale(transform, 1, .8f, Ease.InOutQuad).OnComplete(() => canMorhph = true);
     }
 
     public void TakeDamage(int damage)
@@ -87,8 +85,8 @@ public class Player : MorphableBehaviour, IDamageable
         float moveY = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(moveX * stats.speed, moveY * stats.speed);
 
-        if (Input.GetKeyDown(KeyCode.Q)) Grow();
-        if (Input.GetKeyDown(KeyCode.E)) Shrink();
+        if (Input.GetKeyDown(KeyCode.Q) && state == MorphState.Normal) Grow();
+        if (Input.GetKeyDown(KeyCode.E) && state == MorphState.Normal) Shrink();
 
         if (Input.GetMouseButtonDown(0)) morphGun.Shoot(MorphType.Shrink);
         if (Input.GetMouseButtonDown(1)) morphGun.Shoot(MorphType.Grow);

@@ -27,7 +27,7 @@ public class MorphBullet : MonoBehaviour
         {
             if (type == MorphType.Grow)
                 morphable.Grow();
-            if (type == MorphType.Shrink)
+            else if (type == MorphType.Shrink)
                 morphable.Shrink();
             Destroy(gameObject);
         }

@@ -3,16 +3,6 @@
 public class Obstacle : MonoBehaviour
 {
     public int damage = 1;
-    private Rigidbody2D rb;
-    public float speed = 5;
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
-    private void FixedUpdate()
-    {
-        rb.velocity = Vector2.left * speed;
-    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
@@ -21,6 +11,5 @@ public class Obstacle : MonoBehaviour
             player.TakeDamage(damage);
             Destroy(gameObject);
         }
-        Debug.Log($"{gameObject.name} collided with {collision.gameObject.name}");
     }
 }

@@ -9,7 +9,7 @@ public class StartMenuHandler : MonoBehaviourSingleton<StartMenuHandler>
     [SerializeField] private GameObject startMenu;
     [SerializeField] private Player player;
 
-    private void Awake()
+    private void Start()
     {
         OpenStartMenu();
     }

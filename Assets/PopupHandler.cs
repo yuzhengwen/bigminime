@@ -4,7 +4,6 @@ public class PopupHandler : MonoBehaviour
 {
     public GameObject popup;
     private bool shown = false;
-    public float speed = 5;
     private Player player;
 
     private void Awake()
@@ -32,10 +31,6 @@ public class PopupHandler : MonoBehaviour
         {
             ClosePopup();
         }
-    }
-    private void FixedUpdate()
-    {
-        transform.Translate(Vector2.left * speed * Time.fixedDeltaTime);
     }
     public void ClosePopup()
     {

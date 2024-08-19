@@ -6,15 +6,10 @@ public class MorphableObstacle : MorphableBehaviour
 {
     public int damage = 1;
     private Rigidbody2D rb;
-    public float speed = 5;
+    private bool canMorph = true;
 
     public event Action OnShrink, OnGrow;
-    protected virtual void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = Vector2.left * speed;
-    }
-    private void Start()
+    protected virtual void Start()
     {
         if (state == MorphState.Small)
         {
@@ -31,31 +26,35 @@ public class MorphableObstacle : MorphableBehaviour
     }
     public override void Grow()
     {
+        if (!canMorph) return;
+
+        canMorph = false;
         OnGrow?.Invoke();
         if (state == MorphState.Small)
         {
             state = MorphState.Normal;
-            Tween.Scale(transform, 1f, 1f, Ease.InOutQuad);
+            Tween.Scale(transform, 5f, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         }
         else if (state == MorphState.Normal)
         {
             state = MorphState.Big;
-            Tween.Scale(transform, 10, 1f, Ease.InOutQuad);
+            Tween.Scale(transform, 10, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         }
     }
 
     public override void Shrink()
     {
+        if (!canMorph) return;
         OnShrink?.Invoke();
         if (state == MorphState.Big)
         {
             state = MorphState.Normal;
-            Tween.Scale(transform, 5, 1f, Ease.InOutQuad);
+            Tween.Scale(transform, 5, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         }
         else if (state == MorphState.Normal)
         {
             state = MorphState.Small;
-            Tween.Scale(transform, 1f, 1f, Ease.InOutQuad);
+            Tween.Scale(transform, 1f, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         }
     }
 

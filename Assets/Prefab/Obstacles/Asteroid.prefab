@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6339071769062652147}
   - component: {fileID: -8861579700830401932}
   - component: {fileID: -6854563609993388956}
+  - component: {fileID: 3002684665606184043}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -101,7 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   damage: 1
-  speed: 5
   health: 20
   hitFx: {fileID: 3804872480095797596, guid: ebc480baf52b220419a0c92da96cc531, type: 3}
 --- !u!50 &-8861579700830401932
@@ -166,3 +166,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3002684665606184043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989563385079434712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095c92a6d6d56b348b0abf761608c908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 0.6226415, g: 0.5315949, b: 0.5315949, a: 1}
+  flashDuration: 0.05
+  flashSpeed: 5
