@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7907881679126754747}
   - component: {fileID: 8693208951944562348}
   m_Layer: 0
-  m_Name: MorphBullet
+  m_Name: GrowBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 704398460, guid: fe66b5c45e80d6544a63b9d8afdaf8f0, type: 3}
+  m_Sprite: {fileID: 1684607657, guid: fe66b5c45e80d6544a63b9d8afdaf8f0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

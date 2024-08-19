@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MorphGun : MonoBehaviour
 {
-    public MorphBullet bulletPrefab;
+    public MorphBullet shrink, grow;
     public float fireInterval = 1.5f;
     private float nextFireTime = 0;
     [SerializeField] private Transform firePoint;
@@ -13,8 +13,7 @@ public class MorphGun : MonoBehaviour
         if (Time.time >= nextFireTime)
         {
             Quaternion rotate = Quaternion.LookRotation(Vector3.forward, GetVectorToMouse(transform.position));
-            Instantiate(bulletPrefab, firePoint.position, rotate);
-            bulletPrefab.type = type;
+            Instantiate(type == MorphType.Shrink ? shrink : grow, firePoint.position, rotate);
             nextFireTime = Time.time + fireInterval;
         }
     }

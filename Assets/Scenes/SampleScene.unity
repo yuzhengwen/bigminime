@@ -1593,8 +1593,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31f07ad0db70bc44886bc34478ab8295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8693208951944562348, guid: 654853058c418b040889629d9fbbc348, type: 3}
-  fireInterval: 1.5
+  shrink: {fileID: 8693208951944562348, guid: 654853058c418b040889629d9fbbc348, type: 3}
+  grow: {fileID: 8693208951944562348, guid: aee24e17e1165894e99237d48249bd8c, type: 3}
+  fireInterval: 1
   firePoint: {fileID: 533609401}
 --- !u!212 &1620027310
 SpriteRenderer:
@@ -1636,7 +1637,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: bfbdeff02c6026f42a9c2fd5d3345220, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

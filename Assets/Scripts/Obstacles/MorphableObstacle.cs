@@ -21,7 +21,7 @@ public class MorphableObstacle : MorphableBehaviour
             state = MorphState.Normal;
             Tween.Scale(transform, 1f, 1f, Ease.InOutQuad);
         }
-        if (state == MorphState.Normal)
+        else if (state == MorphState.Normal)
         {
             state = MorphState.Big;
             Tween.Scale(transform, 10, 1f, Ease.InOutQuad);
@@ -35,7 +35,7 @@ public class MorphableObstacle : MorphableBehaviour
             state = MorphState.Normal;
             Tween.Scale(transform, 5, 1f, Ease.InOutQuad);
         }
-        if (state == MorphState.Normal)
+        else if (state == MorphState.Normal)
         {
             state = MorphState.Small;
             Tween.Scale(transform, 1f, 1f, Ease.InOutQuad);
