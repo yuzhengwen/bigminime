@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PrimeTween;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Player : MorphableBehaviour, IDamageable
 {
@@ -104,6 +105,17 @@ public class Player : MorphableBehaviour, IDamageable
             NotificationHandler.Instance.ShowNotification("Hello World!");
         }
     }
+
+    public void AddCoin(int coinValue)
+    {
+        stats.coins += coinValue;
+        CollectiblesCounter.Instance.SetCoins(stats.coins);
+    }
+    public void AddKey()
+    {
+        stats.keys++;
+        CollectiblesCounter.Instance.SetKeys(stats.keys);
+    }
 }
 
 [System.Serializable]
@@ -115,6 +127,9 @@ public class PlayerStats
     public int damage = 1;
 
     public int level = 1;
+
+    public int coins = 0;
+    public int keys = 0;
 }
 public interface IDamageable
 {
