@@ -49,6 +49,10 @@ public class Player : MorphableBehaviour, IDamageable
         playerGun.damageMultiplier = 4;
         Tween.Scale(transform, 4, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         Invoke(nameof(ReturnNormal), 2);
+
+        stats.maxHealth = 30;
+        stats.currentHealth = 30 * stats.currentHealth / 20;
+        healthbarController.SetMaxHealth(stats.maxHealth, stats.currentHealth);
     }
 
     public override void Shrink()
@@ -60,12 +64,21 @@ public class Player : MorphableBehaviour, IDamageable
         playerGun.damageMultiplier = 1;
         Tween.Scale(transform, 0.5f, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         Invoke(nameof(ReturnNormal), 2);
+
+        stats.maxHealth = 8;
+        stats.currentHealth = 8 * stats.currentHealth / 20;
+        healthbarController.SetMaxHealth(stats.maxHealth, stats.currentHealth);
     }
     private void ReturnNormal()
     {
         state = MorphState.Normal;
         playerGun.damageMultiplier = 2;
         Tween.Scale(transform, 1, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
+
+        float percentage = stats.currentHealth / (float)stats.maxHealth;
+        stats.maxHealth = 20;
+        stats.currentHealth = (int)(20 * percentage);
+        healthbarController.SetMaxHealth(stats.maxHealth, stats.currentHealth);
     }
 
     public void TakeDamage(int damage)

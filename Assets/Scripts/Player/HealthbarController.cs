@@ -21,16 +21,28 @@ public class HealthbarController : MonoBehaviour
         }
         this.maxHealth = maxHealth;
         this.currentHealth = currentHealth;
-        for (int i = 0; i < maxHealth/2; i++)
+
+        if (hearts.Count>maxHealth/2)
         {
-            GameObject heart = new GameObject("Heart_" + i);
-            SpriteRenderer spriteRenderer = heart.AddComponent<SpriteRenderer>();
-            spriteRenderer.sprite = fullHeart;
+            for (int i = maxHealth / 2; i < hearts.Count; i++)
+            {
+                Destroy(hearts[i]);
+            }
+            hearts.RemoveRange(maxHealth / 2, hearts.Count - maxHealth / 2);
+        }
+        else if (hearts.Count < maxHealth / 2)
+        {
+            for (int i = hearts.Count; i < maxHealth / 2; i++)
+            {
+                GameObject heart = new GameObject("Heart_" + i);
+                SpriteRenderer spriteRenderer = heart.AddComponent<SpriteRenderer>();
+                spriteRenderer.sprite = fullHeart;
 
-            heart.transform.position = new Vector2(transform.position.x + i * offset, transform.position.y);
-            heart.transform.parent = transform;
+                heart.transform.position = new Vector2(transform.position.x + i * offset, transform.position.y);
+                heart.transform.parent = transform;
 
-            hearts.Add(heart);
+                hearts.Add(heart);
+            }
         }
         SetHealth(currentHealth);
     }
