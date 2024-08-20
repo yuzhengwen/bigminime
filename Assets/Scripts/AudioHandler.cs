@@ -7,11 +7,11 @@ public class AudioHandler : MonoBehaviourSingleton<AudioHandler>
 {
     public SerializedDictionary<string, AudioClip> audioClips = new();
 
-    public void PlayAudio(string audioName)
+    public void PlayAudio(string audioName, float volume = 0.5f)
     {
         if (audioClips.TryGetValue(audioName, out AudioClip audioClip))
         {
-            AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position);
+            AudioSource.PlayClipAtPoint(audioClip, Camera.main.transform.position, volume);
         }
         else
         {
