@@ -6,6 +6,7 @@ public class PlayerGun : MonoBehaviour
     public float fireInterval = .8f;
     private float nextFireTime = 0;
     public bool canShoot = true;
+    public int damageMultiplier = 2;
     private void Update()
     {
         if (Time.time >= nextFireTime && canShoot)
@@ -17,7 +18,8 @@ public class PlayerGun : MonoBehaviour
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+        bullet.damage *= damageMultiplier;
         AudioHandler.Instance.PlayAudio("BulletFire");
     }
 }

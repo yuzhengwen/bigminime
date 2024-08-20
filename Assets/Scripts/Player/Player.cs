@@ -14,7 +14,7 @@ public class Player : MorphableBehaviour, IDamageable
 
     public bool playing = false;
     public bool dead = false;
-    private bool canMorhph = true;
+    private bool canMorph = true;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,27 +41,30 @@ public class Player : MorphableBehaviour, IDamageable
     }
     public override void Grow()
     {
-        if (!canMorhph) return;
+        if (!canMorph) return;
 
-        canMorhph = false;
+        canMorph = false;
         state = MorphState.Big;
-        Tween.Scale(transform, 4, .8f, Ease.InOutQuad).OnComplete(() => canMorhph = true);
+        playerGun.damageMultiplier = 4;
+        Tween.Scale(transform, 4, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         Invoke(nameof(ReturnNormal), 2);
     }
 
     public override void Shrink()
     {
-        if (!canMorhph) return;
+        if (!canMorph) return;
 
-        canMorhph = false;
+        canMorph = false;
         state = MorphState.Small;
-        Tween.Scale(transform, 0.5f, .8f, Ease.InOutQuad).OnComplete(() => canMorhph = true);
+        playerGun.damageMultiplier = 1;
+        Tween.Scale(transform, 0.5f, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
         Invoke(nameof(ReturnNormal), 2);
     }
     private void ReturnNormal()
     {
         state = MorphState.Normal;
-        Tween.Scale(transform, 1, .8f, Ease.InOutQuad).OnComplete(() => canMorhph = true);
+        playerGun.damageMultiplier = 2;
+        Tween.Scale(transform, 1, .8f, Ease.InOutQuad).OnComplete(() => canMorph = true);
     }
 
     public void TakeDamage(int damage)
