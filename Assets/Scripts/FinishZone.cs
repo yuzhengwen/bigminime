@@ -23,7 +23,7 @@ public class FinishZone : MonoBehaviour
     public TMPro.TextMeshProUGUI countdownText;
     private void Start()
     {
-        if (finishScreen!=null && finishScreen.activeSelf)
+        if (finishScreen != null && finishScreen.activeSelf)
             finishScreen.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,7 +43,7 @@ public class FinishZone : MonoBehaviour
     private void ShowFinishScreen(bool success, int stars)
     {
         finishScreen.SetActive(true);
-        finishText.text = success ? "Level Complete!" : "Level Failed!";
+        finishText.text = success ? (isLastLevel ? "Game End. Congrats!" : "Level Complete!") : "Level Failed!";
         StartCoroutine(Countdown(success, isLastLevel));
     }
 
