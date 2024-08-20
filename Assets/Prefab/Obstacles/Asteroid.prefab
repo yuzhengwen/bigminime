@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5922037567492128794}
   - component: {fileID: -6339071769062652147}
   - component: {fileID: -8861579700830401932}
-  - component: {fileID: -6854563609993388956}
   - component: {fileID: 3002684665606184043}
+  - component: {fileID: 7020819494818050467}
+  - component: {fileID: 8219952064783962924}
   m_Layer: 0
   m_Name: Asteroid
   m_TagString: Untagged
@@ -104,6 +105,7 @@ MonoBehaviour:
   damage: 1
   health: 20
   hitFx: {fileID: 3804872480095797596, guid: ebc480baf52b220419a0c92da96cc531, type: 3}
+  popupObj: {fileID: 386730585317829717, guid: c60394d81f3a5754c906a9f0268ae2c7, type: 3}
 --- !u!50 &-8861579700830401932
 Rigidbody2D:
   serializedVersion: 4
@@ -131,8 +133,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!58 &-6854563609993388956
-CircleCollider2D:
+--- !u!114 &3002684665606184043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 989563385079434712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 095c92a6d6d56b348b0abf761608c908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 0.6226415, g: 0.5315949, b: 0.5315949, a: 1}
+  flashDuration: 0.05
+  flashSpeed: 5
+--- !u!60 &7020819494818050467
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -164,9 +181,32 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &3002684665606184043
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.89, y: 0.82}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.285, y: 0.31}
+      - {x: 0.024999999, y: 0.39}
+      - {x: -0.024999999, y: 0.41}
+      - {x: -0.175, y: 0.41}
+      - {x: -0.445, y: 0.22}
+      - {x: -0.445, y: -0.16}
+      - {x: -0.33499998, y: -0.31}
+      - {x: -0.285, y: -0.37}
+      - {x: 0.015, y: -0.41}
+      - {x: 0.255, y: -0.41}
+      - {x: 0.445, y: -0.07}
+      - {x: 0.445, y: 0.049999997}
+      - {x: 0.315, y: 0.29}
+  m_UseDelaunayMesh: 0
+--- !u!114 &8219952064783962924
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,9 +215,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 989563385079434712}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 095c92a6d6d56b348b0abf761608c908, type: 3}
+  m_Script: {fileID: 11500000, guid: 30d2b09a267813e4b842e53b8bd44c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashColor: {r: 0.6226415, g: 0.5315949, b: 0.5315949, a: 1}
-  flashDuration: 0.05
-  flashSpeed: 5
+  speed: 5

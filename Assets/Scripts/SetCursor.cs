@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class SetCursor : MonoBehaviour
+using YuzuValen.Utils;
+public class SetCursor : MonoBehaviourSingletonPersistent<SetCursor>
 {
     public Texture2D cursorTexture;
 

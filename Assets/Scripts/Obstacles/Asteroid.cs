@@ -7,6 +7,7 @@ public class Asteroid : MorphableObstacle, IDamageable
     private SpriteRenderer spriteRenderer;
     private DamageFlash damageFlash;
     [SerializeField] private GameObject hitFx;
+    [SerializeField] private GameObject popupObj;
     protected void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -22,12 +23,10 @@ public class Asteroid : MorphableObstacle, IDamageable
         health -= damage;
         damageFlash.Flash();
         UpdateIndicator();
+        Instantiate(popupObj, transform.position, Quaternion.identity).GetComponent<PopupScript>().SetText($"{damage}!");
         if (health <= 0)
         {
-            Destroy(gameObject);
-            GameObject hit = Instantiate(hitFx, transform.position, Quaternion.identity);
-            AudioHandler.Instance.PlayAudio("AsteroidExplosion");
-            Destroy(hit, 0.05f);
+            DestroySelf();
         }
     }
 
@@ -82,6 +81,13 @@ public class Asteroid : MorphableObstacle, IDamageable
                 health = 40;
             }
         }
-        Debug.Log("Health: " + health);
+    }
+    protected override void DestroySelf()
+    {
+        Destroy(gameObject);
+        GameObject hit = Instantiate(hitFx, transform.position, Quaternion.identity);
+        AudioHandler.Instance.PlayAudio("AsteroidExplosion");
+        float duration = hit.GetComponent<Animator>().GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        Destroy(hit, duration);
     }
 }

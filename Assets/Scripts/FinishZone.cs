@@ -23,7 +23,8 @@ public class FinishZone : MonoBehaviour
     public TMPro.TextMeshProUGUI countdownText;
     private void Start()
     {
-        finishScreen.SetActive(false);
+        if (finishScreen!=null && finishScreen.activeSelf)
+            finishScreen.SetActive(false);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

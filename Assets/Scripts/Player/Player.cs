@@ -12,6 +12,7 @@ public class Player : MorphableBehaviour, IDamageable
     [SerializeField] private PlayerGun playerGun;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private HealthbarController healthbarController;
+    [SerializeField] private GameObject popupObj;
 
     public bool playing = false;
     public bool dead = false;
@@ -83,9 +84,11 @@ public class Player : MorphableBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        stats.currentHealth -= damage * MorphValues.SelfDamage[state];
+        int damageTaken = damage * MorphValues.DamageChart[state];
+        stats.currentHealth -= damageTaken;
         healthbarController.SetHealth(stats.currentHealth);
         damageFlash.Flash();
+        Instantiate(popupObj, transform.position, Quaternion.identity).GetComponent<PopupScript>().SetText($"{damageTaken}!");
 
         if (stats.currentHealth <= 0)
         {
@@ -107,11 +110,6 @@ public class Player : MorphableBehaviour, IDamageable
 
         if (Input.GetMouseButtonDown(0)) morphGun.Shoot(MorphType.Shrink);
         if (Input.GetMouseButtonDown(1)) morphGun.Shoot(MorphType.Grow);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeDamage(1);
-        }
 
         if (Input.GetKeyDown(KeyCode.L))
         {

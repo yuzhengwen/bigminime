@@ -11,7 +11,13 @@ public class StartMenuHandler : MonoBehaviourSingleton<StartMenuHandler>
 
     private void Start()
     {
-        OpenStartMenu();
+        NotificationHandler.Instance.ShowNotification("Level " + (SceneManager.GetActiveScene().buildIndex + 1));
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            OpenStartMenu();
+        else
+        {
+            StartGame();
+        }
     }
     public void StartGame()
     {

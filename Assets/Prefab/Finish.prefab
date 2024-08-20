@@ -132,4 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 552848a6e49ca0f41acb54faf28f4861, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isLastLevel: 1
+  isLastLevel: 0
+  coinRequirements:
+    _serializedList: []
+  keyRequirement: 3
+  finishScreen: {fileID: 0}
+  finishText: {fileID: 0}
+  stars: {fileID: 0}
+  countdownText: {fileID: 0}

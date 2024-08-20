@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using AYellowpaper.SerializedCollections;
 using YuzuValen.Utils;
-public class AudioHandler : MonoBehaviourSingleton<AudioHandler>
+public class AudioHandler : MonoBehaviourSingletonPersistent<AudioHandler>
 {
     public SerializedDictionary<string, AudioClip> audioClips = new();
 

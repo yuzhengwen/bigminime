@@ -78,6 +78,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2205118441335028903, guid: 2b25f5bee3f91954aa5f7e1fe4c8ca3e, type: 3}
   fireInterval: 0.2
   canShoot: 1
+  damageMultiplier: 2
 --- !u!1 &5945973412307006080
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,8 +250,13 @@ MonoBehaviour:
     speed: 5
     damage: 1
     level: 1
+    coins: 0
+    keys: 0
   rb: {fileID: 0}
+  playerGun: {fileID: 0}
+  damageFlash: {fileID: 0}
   healthbarController: {fileID: 0}
+  popupObj: {fileID: 386730585317829717, guid: c60394d81f3a5754c906a9f0268ae2c7, type: 3}
   playing: 0
   dead: 0
 --- !u!114 &1070465421791298731

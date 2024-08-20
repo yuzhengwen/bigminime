@@ -64,7 +64,11 @@ public class MorphableObstacle : MorphableBehaviour
         {
             Player player = collision.collider.GetComponent<Player>();
             player.TakeDamage(damage * MorphValues.DamageChart[state]);
-            Destroy(gameObject);
+            DestroySelf();
         }
+    }
+    protected virtual void DestroySelf()
+    {
+        Destroy(gameObject);
     }
 }

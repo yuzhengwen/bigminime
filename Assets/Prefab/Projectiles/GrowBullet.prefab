@@ -164,4 +164,4 @@ MonoBehaviour:
   type: 1
   damage: 0
   speed: 15
-  lifeTime: 3
+  lifeTime: 1.2

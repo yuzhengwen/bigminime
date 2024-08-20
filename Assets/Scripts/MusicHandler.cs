@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using YuzuValen.Utils;
 
-public class MusicHandler : MonoBehaviour
+public class MusicHandler : MonoBehaviourSingletonPersistent<MusicHandler>
 {
     public AudioClip music;
     private AudioSource audioSource;
