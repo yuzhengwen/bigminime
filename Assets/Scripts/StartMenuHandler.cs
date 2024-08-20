@@ -11,7 +11,6 @@ public class StartMenuHandler : MonoBehaviourSingleton<StartMenuHandler>
 
     private void Start()
     {
-        NotificationHandler.Instance.ShowNotification("Level " + (SceneManager.GetActiveScene().buildIndex + 1));
         if (SceneManager.GetActiveScene().buildIndex == 0)
             OpenStartMenu();
         else
@@ -24,6 +23,8 @@ public class StartMenuHandler : MonoBehaviourSingleton<StartMenuHandler>
         startMenu.SetActive(false);
         Time.timeScale = 1;
         player.EnablePlay();
+        NotificationHandler.Instance.ShowNotification("Level " + (SceneManager.GetActiveScene().buildIndex + 1));
+        Debug.Log("Level " + (SceneManager.GetActiveScene().buildIndex + 1));
     }
     public void QuitGame()
     {

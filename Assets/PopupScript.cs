@@ -13,8 +13,8 @@ public class PopupScript : MonoBehaviour
     }
     private void Start()
     {
-        Tween.PositionY(transform, 1, lifetime, Ease.Linear);
-        Tween.Custom(1, 0, lifetime, (t) => text.alpha = t);
+        Tween.PositionY(transform, 1, lifetime, Ease.Linear, useUnscaledTime: true);
+        Tween.Custom(1, 0, lifetime, (t) => text.alpha = t, useUnscaledTime: true);
         Destroy(gameObject, lifetime + 0.01f);
     }
     public void SetText(string message)

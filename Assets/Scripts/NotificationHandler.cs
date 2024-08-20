@@ -16,17 +16,17 @@ public class NotificationHandler : MonoBehaviourSingleton<NotificationHandler>
     {
         Reset();
         notificationText.enabled = true;
-        Tween.Alpha(notificationText, 1, 0.6f, Ease.OutCirc);
-        Tween.Custom(10, 36, 0.6f, (value) => notificationText.fontSize = (int)value);
-        Tween.ShakeLocalPosition(notificationText.rectTransform, new Vector3(8, 20, 5), 0.6f, 10, true);
+        Tween.Alpha(notificationText, 1, 0.6f, Ease.OutCirc, useUnscaledTime: true);
+        Tween.Custom(10, 36, 0.6f, (value) => notificationText.fontSize = (int)value, useUnscaledTime: true);
+        Tween.ShakeLocalPosition(notificationText.rectTransform, new Vector3(8, 20, 5), 0.6f, 10, true, useUnscaledTime: true);
         notificationText.text = text;
         StartCoroutine(HideNotificationAfterDelay());
     }
     public IEnumerator HideNotificationAfterDelay()
     {
-        yield return new WaitForSeconds(2f);
-        Tween.Alpha(notificationText, 0, 0.6f, Ease.InCirc);
-        Tween.Custom(36, 10, 0.6f, (value) => notificationText.fontSize = (int)value).OnComplete(() => notificationText.enabled = false);
+        yield return new WaitForSecondsRealtime(2f);
+        Tween.Alpha(notificationText, 0, 0.6f, Ease.InCirc, useUnscaledTime: true);
+        Tween.Custom(36, 10, 0.6f, (value) => notificationText.fontSize = (int)value, useUnscaledTime: true).OnComplete(() => notificationText.enabled = false);
     }
 
     private void Reset()
