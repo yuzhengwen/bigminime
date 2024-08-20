@@ -7,6 +7,7 @@ public class CosmicGale : MonoBehaviour
 
     private Rigidbody2D rb;
     public float speed = 5;
+    public float strength = 10;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,11 +42,11 @@ public class CosmicGale : MonoBehaviour
         {
             if (player.state == MorphState.Normal)
             {
-                player.rb.AddForce(Vector2.up * 70);
+                player.rb.AddForce(Vector2.up * 10 * strength);
             }
             else if (player.state == MorphState.Small)
             {
-                player.rb.AddForce(Vector2.up * 150);
+                player.rb.AddForce(Vector2.up * 20 * strength);
             }
         }
     }
