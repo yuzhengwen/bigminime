@@ -18,7 +18,7 @@ public class PlayerGun : MonoBehaviour
 
     void Shoot()
     {
-        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+        Bullet bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(0, 0, -90)).GetComponent<Bullet>();
         bullet.damage *= damageMultiplier;
         AudioHandler.Instance.PlayAudio("BulletFire", 0.2f);
     }

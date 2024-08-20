@@ -19,7 +19,7 @@ public class FinishZone : MonoBehaviour
 
     public GameObject finishScreen;
     public TMPro.TextMeshProUGUI finishText;
-    public Image stars;
+    public GameObject starsHolder;
     public TMPro.TextMeshProUGUI countdownText;
     private void Start()
     {
@@ -44,6 +44,7 @@ public class FinishZone : MonoBehaviour
     {
         finishScreen.SetActive(true);
         finishText.text = success ? (isLastLevel ? "Game End. Congrats!" : "Level Complete!") : "Level Failed!";
+        DisplayStars(stars);
         StartCoroutine(Countdown(success, isLastLevel));
     }
 
@@ -76,5 +77,14 @@ public class FinishZone : MonoBehaviour
                 stars = item.Value;
         }
         return stars;
+    }
+    private void DisplayStars(int stars)
+    {
+        Image[] starImages = new Image[starsHolder.transform.childCount];
+        for (int i = 0; i < starsHolder.transform.childCount; i++)
+        {
+            starImages[i] = starsHolder.transform.GetChild(i).GetComponent<Image>();
+            starImages[i].color = i < stars ? Color.white : Color.gray;
+        }
     }
 }

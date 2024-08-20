@@ -5536,6 +5536,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7044498867105884431, guid: 9779fab49673e114c94545930e0a945c, type: 3}
   m_PrefabInstance: {fileID: 2123596973}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2125046430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 293141383383142920, guid: f480b8e5dca3a8d4981a9ebdeed6c718, type: 3}
+  m_PrefabInstance: {fileID: 6327888223523529327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &315486155094481356
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5785,6 +5790,10 @@ PrefabInstance:
       propertyPath: finishText
       value: 
       objectReference: {fileID: 6327888223523529330}
+    - target: {fileID: 6145406569331365194, guid: 588f53b19f0f22f42aa24636a98b0450, type: 3}
+      propertyPath: starsHolder
+      value: 
+      objectReference: {fileID: 2125046430}
     - target: {fileID: 6145406569331365194, guid: 588f53b19f0f22f42aa24636a98b0450, type: 3}
       propertyPath: finishScreen
       value: 
