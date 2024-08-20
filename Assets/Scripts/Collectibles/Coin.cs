@@ -13,7 +13,7 @@ public class Coin : MonoBehaviour
         {
             Player player = collision.GetComponent<Player>();
             player.AddCoin(coinValue);
-            AudioHandler.Instance.PlayAudio("CoinGet", 1);
+            AudioHandler.Instance.PlayAudio("CoinGet", 1.3f);
             GetComponent<MovingObjectNoRigidbody>().enabled = false;
             Tween.Position(transform, collectPosition.position, 1f, Ease.InOutCubic).OnComplete(() => Destroy(gameObject));
         }
